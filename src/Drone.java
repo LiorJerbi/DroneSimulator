@@ -20,6 +20,7 @@ public class Drone {
 	private double rotation;
 	private double speed;
 	private CPU cpu;
+	private double Battery;
 	
 	public Drone(Map realMap) {
 		this.realMap = realMap;
@@ -30,7 +31,7 @@ public class Drone {
 		lidars = new ArrayList<>();
 
 		speed = 0.2;
-		
+		Battery = 100;
 		rotation = 0;
 		gyroRotation = rotation;
 		
@@ -60,6 +61,7 @@ public class Drone {
 	
 	public void update(int deltaTime) {
 
+
 		double distancedMoved = (speed*100)*((double)deltaTime/1000);
 		
 		pointFromStart =  Tools.getPointByDistance(pointFromStart, rotation, distancedMoved);
@@ -72,7 +74,15 @@ public class Drone {
 		gyroRotation += (1-noiseToRotation)*deltaTime/milli_per_minute;
 		gyroRotation = formatRotation(gyroRotation);
 	}
-	
+
+	public void update_battery(){
+		this.Battery -= 10.0/4800.0;
+	}
+
+	public double getBattery() {
+		return Battery;
+	}
+
 	public static double formatRotation(double rotationValue) {
 		rotationValue %= 360;
 		if(rotationValue < 0) {
@@ -162,6 +172,7 @@ public class Drone {
 		info += "Location: " + pointFromStart +"<br>";
 		info += "gyroRotation: " + df.format(gyroRotation) +"<br>";
 		info += "sensorOpticalFlow: " + sensorOpticalFlow +"<br>";
+		info += "Battery: " + Battery + "<br>";
 		info += "</html>";
 		return info;
 	}

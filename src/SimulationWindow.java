@@ -69,7 +69,7 @@ public class SimulationWindow {
 				  algo1.speedUp();
 			  }
 		});
-		speedBtn1.setBounds(1300, 100, 100, 50);
+		speedBtn1.setBounds(1350, 50, 100, 50);
 		frame.getContentPane().add(speedBtn1);
 		
 		JButton speedBtn2 = new JButton("speedDown");
@@ -80,101 +80,9 @@ public class SimulationWindow {
 				  algo1.speedDown();
 			  }
 		});
-		speedBtn2.setBounds(1400, 100, 100, 50);
+		speedBtn2.setBounds(1350, 100, 100, 50);
 		frame.getContentPane().add(speedBtn2);
-		
-		/*
-		 * Spins
-		 */
-		
-		JButton spinBtn1 = new JButton("spin180");
-		spinBtn1.addActionListener(new ActionListener()
-		{
-			  public void actionPerformed(ActionEvent e)
-			  {
-				  algo1.spinBy(180);
-			  }
-		});
-		spinBtn1.setBounds(1300, 200, 100, 50);
-		frame.getContentPane().add(spinBtn1);
-		
-		JButton spinBtn2 = new JButton("spin90");
-		spinBtn2.addActionListener(new ActionListener()
-		{
-			  public void actionPerformed(ActionEvent e)
-			  {
-				  algo1.spinBy(90);
-			  }
-		});
-		spinBtn2.setBounds(1400, 200, 100, 50);
-		frame.getContentPane().add(spinBtn2);
-		
-		JButton spinBtn3 = new JButton("spin60");
-		spinBtn3.addActionListener(new ActionListener()
-		{
-			  public void actionPerformed(ActionEvent e)
-			  {
-				  algo1.spinBy(60);
-			  }
-		});
-		spinBtn3.setBounds(1500, 200, 100, 50);
-		frame.getContentPane().add(spinBtn3);
-		
-		JButton spinBtn4 = new JButton("spin45");
-		spinBtn4.addActionListener(new ActionListener()
-		{
-			  public void actionPerformed(ActionEvent e)
-			  {
-				  algo1.spinBy(60);
-			  }
-		});
-		spinBtn4.setBounds(1300, 300, 100, 50);
-		frame.getContentPane().add(spinBtn4);
-		
-		JButton spinBtn5 = new JButton("spin30");
-		spinBtn5.addActionListener(new ActionListener()
-		{
-			  public void actionPerformed(ActionEvent e)
-			  {
-				  algo1.spinBy(30);
-			  }
-		});
-		spinBtn5.setBounds(1400, 300, 100, 50);
-		frame.getContentPane().add(spinBtn5);
-		
-		JButton spinBtn6 = new JButton("spin-30");
-		spinBtn6.addActionListener(new ActionListener()
-		{
-			  public void actionPerformed(ActionEvent e)
-			  {
-				  algo1.spinBy(-30);
-			  }
-		});
-		spinBtn6.setBounds(1500, 300, 100, 50);
-		frame.getContentPane().add(spinBtn6);
-		
-		JButton spinBtn7 = new JButton("spin-45");
-		spinBtn7.addActionListener(new ActionListener()
-		{
-			  public void actionPerformed(ActionEvent e)
-			  {
-				  algo1.spinBy(-45);
-			  }
-		});
-		spinBtn7.setBounds(1600, 300, 100, 50);
-		frame.getContentPane().add(spinBtn7);
-		
-		JButton spinBtn8 = new JButton("spin-60");
-		spinBtn8.addActionListener(new ActionListener()
-		{
-			  public void actionPerformed(ActionEvent e)
-			  {
-				  algo1.spinBy(-60);
-			  }
-		});
-		spinBtn8.setBounds(1700, 300, 100, 50);
-		frame.getContentPane().add(spinBtn8);
-		
+
 		/*
 		 * Toogle real map
 		 */
@@ -187,7 +95,7 @@ public class SimulationWindow {
 				  toogleRealMap = !toogleRealMap;
 			  }
 		});
-		toogleMapBtn.setBounds(1300, 400, 120, 50);
+		toogleMapBtn.setBounds(1350, 150, 100, 50);
 		frame.getContentPane().add(toogleMapBtn);
 		
 		/*
@@ -202,7 +110,7 @@ public class SimulationWindow {
 				  toogleAI = !toogleAI;
 			  }
 		});
-		toogleAIBtn.setBounds(1400, 400, 120, 50);
+		toogleAIBtn.setBounds(1350, 200, 100, 50);
 		frame.getContentPane().add(toogleAIBtn);
 		
 		/*
@@ -225,7 +133,7 @@ public class SimulationWindow {
 					});
 			  }
 		});
-		returnBtn.setBounds(1500, 400, 120, 50);
+		returnBtn.setBounds(1350, 250, 120, 50);
 		frame.getContentPane().add(returnBtn);
 		
 		JButton Graph = new JButton("Open Graph");
@@ -236,7 +144,7 @@ public class SimulationWindow {
 				  algo1.mGraph.drawGraph();
 			  }
 		});
-		Graph.setBounds(1600, 400, 120, 50);
+		Graph.setBounds(1350, 300, 120, 50);
 		frame.getContentPane().add(Graph);
 		
 		/*
@@ -245,7 +153,7 @@ public class SimulationWindow {
 		
 		
 		info_label = new JLabel();
-		info_label.setBounds(1300, 500, 300, 200);
+		info_label.setBounds(1300, 350, 300, 200);
 		frame.getContentPane().add(info_label);
 		
 		/*
@@ -254,7 +162,7 @@ public class SimulationWindow {
 		
 		
 		info_label2 = new JLabel();
-		info_label2.setBounds(1400, 450, 300, 200);
+		info_label2.setBounds(1300, 420, 300, 200);
 		frame.getContentPane().add(info_label2);
 		
 		main();
@@ -300,8 +208,8 @@ public class SimulationWindow {
 	
 	public void updateInfo(int deltaTime) {
 		info_label.setText(algo1.drone.getInfoHTML());
-		info_label2.setText("<html>" + String.valueOf(algo1.counter) + " <BR>isRisky:" + String.valueOf(algo1.is_risky) + 
-				"<BR>" + String.valueOf(algo1.risky_dis) + "</html>");
+		info_label2.setText("<html>" + "<BR>Counter:" + String.valueOf(algo1.counter) + " <BR>isRisky:" + String.valueOf(algo1.is_risky) +
+				"<BR>riskyDist:" + String.valueOf(algo1.risky_dis) + "</html>");
 		
 	}
 	

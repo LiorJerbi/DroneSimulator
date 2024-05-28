@@ -63,7 +63,6 @@ public class AutoAlgo1 {
 
 		ai(deltaTime);
 
-
 		if(isRotating != 0) {
 			updateRotating(deltaTime);
 		}
@@ -295,7 +294,6 @@ public class AutoAlgo1 {
 
 			}
 
-
 			Lidar lidar1 = drone.lidars.get(1);
 			if(lidar1.current_distance <= max_risky_distance/3 ) {
 				is_risky = true;
@@ -309,22 +307,24 @@ public class AutoAlgo1 {
 		} else {
 			if(!try_to_escape) {
 				try_to_escape = true;
-				Lidar lidar1 = drone.lidars.get(1);
-				double a = lidar1.current_distance;
+				Lidar rightLidar = drone.lidars.get(1);
+				double rightDistance = rightLidar.current_distance;
 
-				Lidar lidar2 = drone.lidars.get(2);
-				double b = lidar2.current_distance;
+				Lidar leftLidar = drone.lidars.get(2);
+				double leftDistance = leftLidar.current_distance;
 
 
 
 				int spin_by = max_angle_risky;
 
 
-
-				if(a > 270 && b > 270) {
+				if(risky_dis == 0){
+					spin_by = 0;
+				}
+				else if(rightDistance > 270 && leftDistance > 270) {
 					is_lidars_max = true;
-					Point l1 = Tools.getPointByDistance(dronePoint, lidar1.degrees + drone.getGyroRotation(), lidar1.current_distance);
-					Point l2 = Tools.getPointByDistance(dronePoint, lidar2.degrees + drone.getGyroRotation(), lidar2.current_distance);
+					Point l1 = Tools.getPointByDistance(dronePoint, rightLidar.degrees + drone.getGyroRotation(), rightLidar.current_distance);
+					Point l2 = Tools.getPointByDistance(dronePoint, leftLidar.degrees + drone.getGyroRotation(), leftLidar.current_distance);
 					Point last_point = getAvgLastPoint();
 					double dis_to_lidar1 = Tools.getDistanceBetweenPoints(last_point,l1);
 					double dis_to_lidar2 = Tools.getDistanceBetweenPoints(last_point,l2);
@@ -351,13 +351,8 @@ public class AutoAlgo1 {
 						spin_by *= (-1 );
 					}
 				} else {
-
-
-					if(a < b ) {
-						spin_by *= (-1 );
-					}
-					if(a > b){			//Addition by lior here (think changed outcome)
-						spin_by *= 1;
+					if(rightDistance < leftDistance ) {
+						spin_by *= (-1);
 					}
 				}
 
@@ -372,7 +367,12 @@ public class AutoAlgo1 {
 				});
 			}
 		}
-
+		if(drone.getBattery()>0){
+			drone.update_battery();
+		}
+		else{
+			CPU.stopAllCPUS();
+		}
 		//}
 	}
 
