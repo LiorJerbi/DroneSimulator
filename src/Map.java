@@ -12,6 +12,8 @@ public class Map{
 	Drone drone;
 	Point drone_start_point;
 
+	float blackpixels = 0;
+
 	public Map(String path,Point drone_start_point) {
 		try {
 			this.drone_start_point = drone_start_point;
@@ -34,10 +36,10 @@ public class Map{
 			    int blue = clr & 0x000000ff;
 				if(red != 0 && green != 0 && blue != 0) { // think black
 					map[x][y] = true;
+					blackpixels++;
 				}
 			}
 		}
-		
 		return map;
 	}
 	
@@ -45,7 +47,7 @@ public class Map{
 		
 		return !map[x][y];
 	}
-	
+	float gray=0;
 	public void paint(Graphics g) {
 		Color c = g.getColor();
 		g.setColor(Color.GRAY);

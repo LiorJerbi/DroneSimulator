@@ -208,9 +208,9 @@ public class SimulationWindow {
 	
 	public void updateInfo(int deltaTime) {
 		info_label.setText(algo1.drone.getInfoHTML());
-		info_label2.setText("<html>" + "<BR>Counter:" + String.valueOf(algo1.counter) + " <BR>isRisky:" + String.valueOf(algo1.is_risky) +
+		info_label2.setText("<html>" + "<BR>Counter:" + String.valueOf(algo1.counter) +
+				"<BR>isRisky:" + String.valueOf(algo1.is_risky) +
 				"<BR>riskyDist:" + String.valueOf(algo1.risky_dis) + "</html>");
-		
 	}
 	
 	public void stopCPUS() {

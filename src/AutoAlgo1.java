@@ -20,14 +20,17 @@ public class AutoAlgo1 {
 	boolean isSpeedUp = false;
 
 	Graph mGraph = new Graph();
+	float explored_count = 0, unexplored_count=0;
 
 	CPU ai_cpu;
+	float bpixels;
 	public AutoAlgo1(Map realMap) {
 		degrees_left = new ArrayList<>();
 		degrees_left_func =  new ArrayList<>();
 		points = new ArrayList<Point>();
 
 		drone = new Drone(realMap);
+		bpixels = realMap.blackpixels;
 		drone.addLidar(0);
 		drone.addLidar(90);
 		drone.addLidar(-90);
@@ -45,6 +48,7 @@ public class AutoAlgo1 {
 		for(int i=0;i<map_size;i++) {
 			for(int j=0;j<map_size;j++) {
 				map[i][j] = PixelState.unexplored;
+				unexplored_count++;
 			}
 		}
 
@@ -116,11 +120,19 @@ public class AutoAlgo1 {
 		int yi = (int)y;
 
 		if(state == PixelState.visited) {
+			if(map[xi][yi] != PixelState.explored){
+				explored_count++;
+			}
 			map[xi][yi] = state;
 			return;
 		}
 
 		if(map[xi][yi] == PixelState.unexplored) {
+			if(state == PixelState.explored){
+				if(map[xi][yi] != PixelState.explored && map[xi][yi] != PixelState.visited){
+					explored_count++;
+				}
+			}
 			map[xi][yi] = state;
 		}
 	}
@@ -216,6 +228,23 @@ public class AutoAlgo1 {
 
 	}
 
+	public double calculateExploredAreaPercentage() {
+//		int exploredCount = 0, unexploredCount=0;
+//		for (int i = 0; i < map_size; i++) {
+//			for (int j = 0; j < map_size; j++) {
+//					if (map[i][j] == PixelState.explored) {
+//						exploredCount++;
+//					}
+//					if(map[i][j] == PixelState.unexplored){
+//						unexploredCount++;
+//					}
+//				}
+//			}
+//		return  (float)(exploredCount / (exploredCount+unexploredCount)) * 100;
+		return (explored_count / bpixels) * 100;
+	}
+
+
 	boolean is_init = true;
 	double lastFrontLidarDis = 0;
 	boolean isRotateRight = false;
@@ -243,6 +272,7 @@ public class AutoAlgo1 {
 	double max_distance_between_points = 100;
 
 	boolean start_return_home = false;
+	double area_discoverd;
 
 	Point init_point;
 	public void ai(int deltaTime) {
@@ -367,12 +397,19 @@ public class AutoAlgo1 {
 				});
 			}
 		}
-		if(drone.getBattery()>0){
-			drone.update_battery();
-		}
-		else{
-			CPU.stopAllCPUS();
-		}
+
+
+			if(!drone.batAlive){
+				CPU.stopAllCPUS();
+			}
+			drone.update_battery(deltaTime);
+			area_discoverd = calculateExploredAreaPercentage();
+			drone.update_area_discoverd(area_discoverd);
+			if(drone.getBattery() < 0){
+				drone.setBatteryZero();
+				drone.batAlive = false;
+
+			}
 		//}
 	}
 

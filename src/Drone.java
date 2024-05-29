@@ -20,8 +20,13 @@ public class Drone {
 	private double rotation;
 	private double speed;
 	private CPU cpu;
-	private double Battery;
-	
+	private float Battery;
+	private final double BATTERY_DECREMENT_RATE = 100.0 / 480000.0; // 100% over 480000 milliseconds
+	private double area_discoverd;
+	public boolean batAlive = true;
+
+
+
 	public Drone(Map realMap) {
 		this.realMap = realMap;
 		
@@ -45,7 +50,7 @@ public class Drone {
 	public void stop() {
 		cpu.stop();
 	}
-	
+
 	
 	public void addLidar(int degrees) {
 		Lidar lidar = new Lidar(this,degrees);
@@ -75,14 +80,28 @@ public class Drone {
 		gyroRotation = formatRotation(gyroRotation);
 	}
 
-	public void update_battery(){
-		this.Battery -= 10.0/4800.0;
+	public void update_battery(int deltaTime) {
+		this.Battery -= BATTERY_DECREMENT_RATE * deltaTime;
+//		if (this.battery < 0) {
+//			this.battery = 0;
+//		}
+	}
+//	public void update_battery(){
+//
+//		this.Battery -= (10.0/4800.0)*100;
+//	}
+	public void setBatteryZero(){
+		this.Battery = 0;
 	}
 
-	public double getBattery() {
+
+	public float getBattery() {
 		return Battery;
 	}
 
+	public void update_area_discoverd(double area_dis){
+		area_discoverd = area_dis;
+	}
 	public static double formatRotation(double rotationValue) {
 		rotationValue %= 360;
 		if(rotationValue < 0) {
@@ -155,9 +174,6 @@ public class Drone {
 		//Point p = getPointOnMap();
 		//g.drawImage(mImage,p.getX(),p.getY(),mImage.getWidth(),mImage.getHeight());
 		
-		
-		
-		
 		for(int i=0;i<lidars.size();i++) {
 			Lidar lidar = lidars.get(i);
 			lidar.paint(g);
@@ -172,7 +188,8 @@ public class Drone {
 		info += "Location: " + pointFromStart +"<br>";
 		info += "gyroRotation: " + df.format(gyroRotation) +"<br>";
 		info += "sensorOpticalFlow: " + sensorOpticalFlow +"<br>";
-		info += "Battery: " + Battery + "<br>";
+		info += "Battery: " + df.format(Battery) + "<br>";
+		info += "AreaDiscoverd: " + df.format(area_discoverd) + "%" + "<br>";
 		info += "</html>";
 		return info;
 	}
