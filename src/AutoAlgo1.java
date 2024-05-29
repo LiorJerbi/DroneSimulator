@@ -260,7 +260,7 @@ public class AutoAlgo1 {
 
 
 	boolean is_risky = false;
-	int max_risky_distance = 150;
+	int max_risky_distance = 200;
 	boolean try_to_escape = false;
 	double  risky_dis = 0;
 	int max_angle_risky = 10;
