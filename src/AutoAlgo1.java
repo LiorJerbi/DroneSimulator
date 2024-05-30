@@ -120,9 +120,9 @@ public class AutoAlgo1 {
 		int yi = (int)y;
 
 		if(state == PixelState.visited) {
-			if(map[xi][yi] != PixelState.explored){
-				explored_count++;
-			}
+//			if(map[xi][yi] != PixelState.explored){
+//				explored_count++;
+//			}
 			map[xi][yi] = state;
 			return;
 		}
@@ -136,50 +136,7 @@ public class AutoAlgo1 {
 			map[xi][yi] = state;
 		}
 	}
-	/*
 
-	public void fineEdges(int x,int y) {
-		int radius = 6;
-
-		for(int i=y-radius;i<y+radius;i++) {
-			for(int j=x-radius;j<x+radius;j++) {
-				if(Math.abs(y-i) <= 1 && Math.abs(x-j) <= 1) {
-					continue;
-				}
-				if(map[i][j] == PixelState.blocked) {
-					blockLine(x,y,j,i);
-				}
-			}
-		}
-	}
-	*/
-	/*
-	public void blockLine(int x0,int y0,int x1,int y1) {
-		if(x0 > x1) {
-			int tempX = x0;
-			int tempY = y0;
-			x0 = x1;
-			y0 = y1;
-			x1 = tempX;
-			y1 = tempY;
-		}
-
-	     double deltax = x1 - x0;
-	     double deltay = y1 - y0;
-	     double deltaerr = Math.abs(deltay / deltax);    // Assume deltax != 0 (line is not vertical),
-	     double error = 0.0; // No error at start
-	     int y = y0;
-	     for (int x=x0;x<x1;x++) {
-	    	 setPixel(x,y,PixelState.blocked);
-	         error = error + deltaerr;
-	         if( 2*error >= deltax ) {
-                y = y + 1;
-                error=error - deltax;
-	        }
-	     }
-
-	}
-	*/
 
 	public void paintBlindMap(Graphics g) {
 		Color c = g.getColor();
@@ -229,18 +186,6 @@ public class AutoAlgo1 {
 	}
 
 	public double calculateExploredAreaPercentage() {
-//		int exploredCount = 0, unexploredCount=0;
-//		for (int i = 0; i < map_size; i++) {
-//			for (int j = 0; j < map_size; j++) {
-//					if (map[i][j] == PixelState.explored) {
-//						exploredCount++;
-//					}
-//					if(map[i][j] == PixelState.unexplored){
-//						unexploredCount++;
-//					}
-//				}
-//			}
-//		return  (float)(exploredCount / (exploredCount+unexploredCount)) * 100;
 		return (explored_count / bpixels) * 100;
 	}
 
@@ -263,7 +208,7 @@ public class AutoAlgo1 {
 	int max_risky_distance = 200;
 	boolean try_to_escape = false;
 	double  risky_dis = 0;
-	int max_angle_risky = 10;
+	int max_angle_risky = 5; //changed to 5 from 10 by lior (30.5)
 
 	boolean is_lidars_max = false;
 
@@ -377,7 +322,6 @@ public class AutoAlgo1 {
 
 
 					if(dis_to_lidar1 < dis_to_lidar2) {
-
 						spin_by *= (-1 );
 					}
 				} else {
