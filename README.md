@@ -126,7 +126,7 @@ The improvements in the algorithm have led to a significant increase in the area
 
 ## Contributors
 
-- [Lior Jerbi](https://github.com/LiorJerbi)
-- [Yael Rosen](https://github.com/yaelrosen77)
-- [Tomer Klugman](https://github.com/tomerklugman)
-- [Hadas Evers](https://github.com/hadasevers)
+- [Lior Jerbi](https://github.com/LiorJerbi) - 314899493
+- [Yael Rosen](https://github.com/yaelrosen77) - 209498211
+- [Tomer Klugman](https://github.com/tomerklugman) - 312723612
+- [Hadas Evers](https://github.com/hadasevers) - 206398984
