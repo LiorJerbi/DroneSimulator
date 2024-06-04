@@ -58,41 +58,41 @@ We conducted several tests to compare the performance of different algorithms. T
 
 **Original Algorithm:**
 
-![Original Algorithm - Map 2](C:\Users\user\IdeaProjects\DroneSimulator-master\Outcomes\Map2\OriginalAlgo\74%.PNG)
+![Original Algorithm - Map 2](Outcomes\Map2\OriginalAlgo\74%.PNG)
 
 **Improved Algorithm:**
 
-![Improved Algorithm - Map 2](C:\Users\user\IdeaProjects\DroneSimulator-master\Outcomes\Map2\ImprovedAlgo\100%.PNG)
+![Improved Algorithm - Map 2](Outcomes\Map2\ImprovedAlgo\100%.PNG)
 
 ### Map 3
 
 **Original Algorithm:**
 
-![Original Algorithm - Map 3](C:\Users\user\IdeaProjects\DroneSimulator-master\Outcomes\Map3\OriginalAlgo\57%.PNG)
+![Original Algorithm - Map 3](Outcomes\Map3\OriginalAlgo\57%.PNG)
 
 **Improved Algorithm:**
 
-![Improved Algorithm - Map 3](C:\Users\user\IdeaProjects\DroneSimulator-master\Outcomes\Map3\ImprovedAlgo\improved(98%).PNG)
+![Improved Algorithm - Map 3](Outcomes\Map3\ImprovedAlgo\improved(98%).PNG)
 
 ### Map 4
 
 **Original Algorithm:**
 
-![Original Algorithm - Map 4](C:\Users\user\IdeaProjects\DroneSimulator-master\Outcomes\Map4\OriginalAlgo\56%.PNG)
+![Original Algorithm - Map 4](Outcomes\Map4\OriginalAlgo\56%.PNG)
 
 **Improved Algorithm:**
 
-![Improved Algorithm - Map 4](C:\Users\user\IdeaProjects\DroneSimulator-master\Outcomes\Map4\ImprovedAlgo\88%.PNG)
+![Improved Algorithm - Map 4](Outcomes\Map4\ImprovedAlgo\88%.PNG)
 
 ### Map 5
 
 **Original Algorithm:**
 
-![Original Algorithm - Map 5](C:\Users\user\IdeaProjects\DroneSimulator-master\Outcomes\Map5\OriginalAlgo\30%.PNG)
+![Original Algorithm - Map 5](Outcomes\Map5\OriginalAlgo\30%.PNG)
 
 **Improved Algorithm:**
 
-![Improved Algorithm - Map 5](C:\Users\user\IdeaProjects\DroneSimulator-master\Outcomes\Map5\ImprovedAlgo\82%.PNG)
+![Improved Algorithm - Map 5](Outcomes\Map5\ImprovedAlgo\82%.PNG)
 
 ### Discussion
 
