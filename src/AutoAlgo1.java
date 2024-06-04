@@ -208,7 +208,7 @@ public class AutoAlgo1 {
 	int max_risky_distance = 200;
 	boolean try_to_escape = false;
 	double  risky_dis = 0;
-	int max_angle_risky = 5; //changed to 5 from 10 by lior (30.5)
+	int max_angle_risky = 5;
 
 	boolean is_lidars_max = false;
 
@@ -295,6 +295,9 @@ public class AutoAlgo1 {
 
 				if(risky_dis == 0){
 					spin_by = 0;
+					if(!isSpeedUp){
+						isSpeedUp = true;
+					}
 				}
 				else if(rightDistance > 270 && leftDistance > 270) {
 					is_lidars_max = true;
@@ -324,13 +327,21 @@ public class AutoAlgo1 {
 					if(dis_to_lidar1 < dis_to_lidar2) {
 						spin_by *= (-1 );
 					}
+					if(isSpeedUp){
+						isSpeedUp = false;
+					}
 				} else {
 					if(rightDistance < leftDistance ) {
 						spin_by *= (-1);
 					}
+					if(isSpeedUp){
+						isSpeedUp = false;
+					}
 				}
 
-
+				if(drone.getSpeed() < 0.1){
+					isSpeedUp = true;
+				}
 
 				spinBy(spin_by,true,new Func() {
 						@Override

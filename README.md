@@ -1,54 +1,132 @@
-# Drone Simulator
-The main goal for this project is to try find good solution of small drone, flying inside indoor building without getting hit and crash.
-The project fully autonomous 2d drone simulator, this simulator is trying to be realistic as much as it can, with lidar sensors,gyroscope sensor ,optical flow sensor and speed sensor.
-We add a little bit noise to each sample to make it more realistic approach.
-Basic API with real-time info and also manual controlling.
-We also implemented kind of area mapping when the drone fly.
-This project written in Java.
+# Drone Simulator Project
 
-## Getting Started
+## Introduction
 
-When all files located inside eclipse or any other explorer we have the Maps folder which contains couple of maps with route and obstacles.
-- Inside "SimulationWindow" in main we have map object with the path to any map you want to test.
-- Inside "Drone" we have path to our image represents the drone itself.
-After setting this up it is ready to launch.
+This project involves a drone simulator designed to navigate and map an environment using different algorithms. The primary goal is to compare the efficiency of these algorithms in terms of area discovered.
 
-## Sensors
-- Lidar - check the distance between his spot forward and return the distance if hit, if not return 300 as max sample enabled.
-In our project we set 3 lidars - one in front, second 90 degrees, third -90 degrees.
-- Gyroscpoe - check the rotation of the drone. (0-360)
-- Optical flow - check his location on map.
-- Speed - max speed is 2m per second.
 
-## Symbols 
-- Yellow mark - mapped area.
-- Black circle - his purpose to get some idea from where drone came and simply make some route that his passed.(for navigation)
-- Red points - represents the wall point.
-- Blue line - his whole route.
+## Project Structure
 
-## API description
-Really simple API with few buttons -
-Start/pause button, speed up/down, spin -+30/-+45/-+60/90/180.
-- Toggle Map - allows you to hide the real map, entering to "real time" vision.
-- Toggle AI - enable/disable AI.
+- **Simulator**: The core simulation environment where the drone navigates through a given map.
+- **Algorithms**: Different strategies implemented for the drone to explore the map.
+- **Improvements**: Enhancements made to the original simulator and algorithms.
 
-## Map rules
-If you wish to add custom map it has to be black/white pixels- black is wall/obstacle, white is safe pass.
+## Improvements Made
 
-## V2 update
-- Added return home bottom, by clicking it drone will return to starting point.
-- Directed Graph feature added. (JGrapht library required)
+### Simulator Enhancements
 
-## Known bugs
-- API might be in different place depends on the map.
-- Sometimes drone might crash(hit the black pixels) specially in difficult obstacles.
-- Sometimes may be indifferent parameters which causing some pixels override - solution is to re-run project.
+1. **Battery Consumption Model**: Improved battery consumption model to ensure the drone's battery lasts exactly 8 minutes (480 seconds) under typical usage. The simulator runs until the drone's battery is depleted.
+2. **Accurate Area Calculation**: Refined the area calculation method to consider only navigable areas, excluding walls and obstacles.
+3. **Enhanced Visualization**: Updated the visualization components to better represent the drone's path and the explored areas.
 
-## Images
-![](https://i.imgur.com/lweL2Fp.png)
-![](https://i.imgur.com/unUpwsL.png)
-![](https://i.imgur.com/Ptnut2b.png)
-![](https://i.imgur.com/Do0Z3gP.png)
-![](https://i.imgur.com/Y73PO2C.png)
-![graphexample](https://user-images.githubusercontent.com/28596354/60256218-cc095680-98d9-11e9-8ab4-70c00e863df8.png)
+### Algorithm Enhancements
 
+1. **Optimized Pathfinding**: Improved pathfinding algorithms to ensure more efficient coverage of the map.
+2. **Better Decision Making**: Enhanced decision-making logic to reduce redundant movements and improve overall coverage.
+3. **Adaptive Speed Control**: Implemented adaptive speed control based on the environment and battery levels.
+
+## Algorithm Comparison
+
+We conducted several tests to compare the performance of different algorithms. The comparison is based on the area discovered by the drone.
+
+### Results Summary
+
+#### Average of 5 Runs on Map 4
+
+| Algorithm          | Area Discovered Average (%) |
+|--------------------|-----------------------------|
+| Original Algorithm | 45.045%                     |
+| Improved Algorithm | 77.362%                     |
+
+#### Single Run Outcomes on Other Maps
+
+| Map   | Algorithm          | Area Discovered (%) |
+|-------|--------------------|---------------------|
+| Map 1 | Original Algorithm | 68.00%              |
+|       | Improved Algorithm | 91.13%              |
+| Map 2 | Original Algorithm | 74.6%               |
+|       | Improved Algorithm | 100%                |
+| Map 3 | Original Algorithm | 57.29%              |
+|       | Improved Algorithm | 98.5%               |
+| Map 5 | Original Algorithm | 30.72%              |
+|       | Improved Algorithm | 82.88%              |
+
+
+## Visual Comparisons
+
+### Map 2
+
+**Original Algorithm:**
+
+![Original Algorithm - Map 2](C:\Users\user\IdeaProjects\DroneSimulator-master\Outcomes\Map2\OriginalAlgo\74%.PNG)
+
+**Improved Algorithm:**
+
+![Improved Algorithm - Map 2](C:\Users\user\IdeaProjects\DroneSimulator-master\Outcomes\Map2\ImprovedAlgo\100%.PNG)
+
+### Map 3
+
+**Original Algorithm:**
+
+![Original Algorithm - Map 3](C:\Users\user\IdeaProjects\DroneSimulator-master\Outcomes\Map3\OriginalAlgo\57%.PNG)
+
+**Improved Algorithm:**
+
+![Improved Algorithm - Map 3](C:\Users\user\IdeaProjects\DroneSimulator-master\Outcomes\Map3\ImprovedAlgo\improved(98%).PNG)
+
+### Map 4
+
+**Original Algorithm:**
+
+![Original Algorithm - Map 4](C:\Users\user\IdeaProjects\DroneSimulator-master\Outcomes\Map4\OriginalAlgo\56%.PNG)
+
+**Improved Algorithm:**
+
+![Improved Algorithm - Map 4](C:\Users\user\IdeaProjects\DroneSimulator-master\Outcomes\Map4\ImprovedAlgo\88%.PNG)
+
+### Map 5
+
+**Original Algorithm:**
+
+![Original Algorithm - Map 5](C:\Users\user\IdeaProjects\DroneSimulator-master\Outcomes\Map5\OriginalAlgo\30%.PNG)
+
+**Improved Algorithm:**
+
+![Improved Algorithm - Map 5](C:\Users\user\IdeaProjects\DroneSimulator-master\Outcomes\Map5\ImprovedAlgo\82%.PNG)
+
+### Discussion
+
+The improvements in the algorithm have led to a significant increase in the area discovered. The improved algorithm consistently outperformed the original algorithm across different maps.
+
+## How to Run the Simulator
+
+1. **Setup**:
+    - Clone the repository.
+    - Ensure you have the necessary dependencies installed.
+
+2. **Running the Simulator**:
+    - Navigate to the project directory.
+    - In the "SimulatorWindow" file in line 186 change the current path to the map you want to load without the last number and the ".png" finisher
+    - Run the "SimulationWindow" file to start the simulation.
+
+3. **Configuring the Maps**:
+    - Maps can be found in the `Maps` directory.
+    - Modify the map files or add new ones to test different environments.
+
+## Future Work
+
+1. **Further Optimization**: Continue refining the pathfinding and decision-making algorithms.
+2. **Real-World Integration**: Explore the integration of the simulator with real-world drone hardware.
+3. **Advanced Visualization**: Enhance the visualization to include 3D representations and real-time analytics.
+
+## Original Project
+
+- You can find the original project that we improved in this link: 
+- https://github.com/vection/DroneSimulator
+
+## Contributors
+
+- [Lior Jerbi](https://github.com/LiorJerbi)
+- [Yael Rosen](https://github.com/yaelrosen77)
+- [Tomer Klugman](https://github.com/tomerklugman)
+- [Hadas Evers](https://github.com/hadasevers)

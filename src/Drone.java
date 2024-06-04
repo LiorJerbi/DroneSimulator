@@ -82,14 +82,8 @@ public class Drone {
 
 	public void update_battery(int deltaTime) {
 		this.Battery -= BATTERY_DECREMENT_RATE * deltaTime;
-//		if (this.battery < 0) {
-//			this.battery = 0;
-//		}
 	}
-//	public void update_battery(){
-//
-//		this.Battery -= (10.0/4800.0)*100;
-//	}
+
 	public void setBatteryZero(){
 		this.Battery = 0;
 	}
@@ -156,7 +150,9 @@ public class Drone {
 			speed = 0;
 		}
 	}
-	
+	public double getSpeed(){
+		return speed;
+	}
 	
 	boolean initPaint = false;
 	BufferedImage mImage;
@@ -190,6 +186,7 @@ public class Drone {
 		info += "sensorOpticalFlow: " + sensorOpticalFlow +"<br>";
 		info += "Battery: " + df.format(Battery) + "<br>";
 		info += "AreaDiscoverd: " + df.format(area_discoverd) + "%" + "<br>";
+		info += "Speed: " + df.format(speed) + "<br>";
 		info += "</html>";
 		return info;
 	}
